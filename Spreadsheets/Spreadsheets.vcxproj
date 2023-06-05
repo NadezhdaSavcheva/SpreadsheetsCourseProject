@@ -136,10 +136,12 @@
     <ClCompile Include="Spreadsheets.cpp" />
     <ClCompile Include="StringCell.cpp" />
     <ClCompile Include="Table.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h" />
     <ClInclude Include="CellFactory.h" />
+    <ClInclude Include="ConfigEnums.h" />
     <ClInclude Include="FormulaCell.h" />
     <ClInclude Include="FractionalCell.h" />
     <ClInclude Include="IntegerCell.h" />
@@ -147,6 +149,7 @@
     <ClInclude Include="StringCell.h" />
     <ClInclude Include="Table.h" />
     <ClInclude Include="UniquePointer.hpp" />
+    <ClInclude Include="Utils.h" />
     <ClInclude Include="Vector.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -2,13 +2,11 @@
 #include "Cell.h"
 
 class StringCell : public Cell {
-private:
-    MyString value;
-
-    bool isValidString() const;
 public:
+    StringCell(const MyString& data) : Cell(data, CellType::String) {}
+    bool isValidString(const MyString& data) const;
     MyString getValue() const override;
-    void setValue(const MyString& value) override;
+    void setValue(const MyString& data) override;
     CellType getCellType() const override;
     bool isNumeric() const override;
 };

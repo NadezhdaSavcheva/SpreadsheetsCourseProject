@@ -3,11 +3,10 @@
 
 class FormulaCell : public Cell {
 private:
-    MyString expression;
-
-    bool isValidFormula() const;
+    double formulaResult;
 public:
     MyString getValue() const override;
+    bool isValidFormula(const MyString& value) const;
     void setValue(const MyString& value) override;
     CellType getCellType() const override;
     bool isNumeric() const override;

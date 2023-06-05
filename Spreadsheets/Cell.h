@@ -1,12 +1,6 @@
 #pragma once
 #include "MyString.h"
-
-enum class CellType {
-    Integer,
-    Fractional,
-    String,
-    Formula
-};
+#include "ConfigEnums.h"
 
 class Cell {
 protected:
@@ -15,9 +9,12 @@ protected:
 
     CellType determineType();
 public:
-    virtual ~Cell() {}
+    Cell(const MyString& data, CellType type) : data(data), cellType(type) {}
+
     virtual MyString getValue() const = 0;
-    virtual void setValue(const MyString& value) = 0;
+    virtual void setValue(const MyString&) = 0;
     virtual CellType getCellType() const = 0;
     virtual bool isNumeric() const = 0;
+
+    virtual ~Cell() = default;
 };

@@ -5,11 +5,12 @@ class FractionalCell : public Cell {
 private:
     double value;
 
-    bool isValidFractionalNumber() const;
     double getNumericValue() const;
 public:
+    FractionalCell(const MyString& data);
+    bool isValidFractionalNumber(const MyString& data) const;
     MyString getValue() const override;
-    void setValue(const MyString& value) override;
+    void setValue(const MyString& data) override;
     CellType getCellType() const override;
     bool isNumeric() const override;
 };
