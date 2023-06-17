@@ -1,11 +1,13 @@
 #include "FormulaCell.h"
 #include "Utils.h"
 
+FormulaCell::FormulaCell(const MyString& value) : Cell(value, CellType::Formula) {}
+
 MyString FormulaCell::getValue() const {
     if (isNaN(formulaResult))
         return "Error";
 
-    return toStrin
+    return toString<double>(formulaResult);
 }
 
 bool FormulaCell::isValidFormula(const MyString& value) const {

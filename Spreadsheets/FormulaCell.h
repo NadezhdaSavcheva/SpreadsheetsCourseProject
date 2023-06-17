@@ -3,8 +3,9 @@
 
 class FormulaCell : public Cell {
 private:
-    double formulaResult;
+    double formulaResult = 0;
 public:
+    FormulaCell(const MyString& value);
     MyString getValue() const override;
     bool isValidFormula(const MyString& value) const;
     void setValue(const MyString& value) override;

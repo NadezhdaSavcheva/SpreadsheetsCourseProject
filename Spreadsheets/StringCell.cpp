@@ -1,11 +1,12 @@
 #include "StringCell.h"
+#include "MyString.h"
 
 //static const char specialSymbols[] = { '\'', '\"', '\\' };
 
 bool StringCell::isValidString(const MyString& data) const {
 	size_t stringSize = data.length();
 
-	if (stringSize == 0 || data[0] != '\"' || data[stringSize - 1] != '\"')
+	if (data[0] != '\"' || data[stringSize - 1] != '\"')
 		return false;
 
 	for (size_t i = 0; i < stringSize; i++) {
@@ -26,7 +27,7 @@ void StringCell::setValue(const MyString& value) {
 	if (!isValidString(value))
 		throw;
 
-	data = value;
+	data = data.substr(1, value.length() - 2);
 }
 
 CellType StringCell::getCellType() const {

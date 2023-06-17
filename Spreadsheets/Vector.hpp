@@ -18,6 +18,7 @@ private:
 	void resize(const size_t);
 public:
 	Vector();
+	Vector(size_t capacity);
 	Vector(const Vector<T>& other);
 	Vector(Vector<T>&& other);
 	Vector<T>& operator=(const Vector<T>& other);
@@ -91,8 +92,12 @@ void Vector<T>::resize(const size_t expectedCapacityToFit) {
 template <typename T>
 Vector<T>::Vector() {
 	data = nullptr;
-	size = data = 0;
+	size = 0;
+	capacity = 8;
 }
+
+template <typename T>
+Vector<T>::Vector(size_t capacity) : data(nullptr), size(0), capacity(capacity) {}
 
 template <typename T>
 Vector<T>::Vector(const Vector<T>& other) {

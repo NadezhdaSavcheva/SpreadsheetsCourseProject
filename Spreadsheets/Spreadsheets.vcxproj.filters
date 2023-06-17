@@ -83,5 +83,8 @@
     <ClInclude Include="ConfigEnums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CsvParser.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

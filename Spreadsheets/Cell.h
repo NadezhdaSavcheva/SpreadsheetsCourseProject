@@ -6,8 +6,6 @@ class Cell {
 protected:
     MyString data;
     CellType cellType;
-
-    CellType determineType();
 public:
     Cell(const MyString& data, CellType type) : data(data), cellType(type) {}
 

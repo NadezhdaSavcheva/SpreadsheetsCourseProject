@@ -1,4 +1,4 @@
 #pragma once
 #include "Cell.h"
 
-Cell* cellFactory(CellType type);
+Cell* cellFactory(const MyString& data, CellType type);

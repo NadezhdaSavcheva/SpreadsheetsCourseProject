@@ -142,6 +142,7 @@
     <ClInclude Include="Cell.h" />
     <ClInclude Include="CellFactory.h" />
     <ClInclude Include="ConfigEnums.h" />
+    <ClInclude Include="CsvParser.hpp" />
     <ClInclude Include="FormulaCell.h" />
     <ClInclude Include="FractionalCell.h" />
     <ClInclude Include="IntegerCell.h" />

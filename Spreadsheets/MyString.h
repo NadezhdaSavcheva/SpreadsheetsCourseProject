@@ -37,11 +37,13 @@ public:
 	MyString& operator=(MyString&& other) noexcept;
 
 	MyString& operator+=(const MyString& other);
+	MyString& operator+=(char ch);
 
 	const char* c_str() const;
 	size_t length() const;
 	size_t size() const;
 	bool empty() const;
+	void clear();
 	char front() const;
 	char back() const;
 	size_t find(char c, size_t pos = 0) const;
@@ -60,6 +62,7 @@ public:
 	~MyString();
 
 	friend MyString operator+(const MyString& lhs, const MyString& rhs);
+	friend std::istream& getline(std::istream& is, MyString& str, char delimiter);
 };
 
 std::ostream& operator<<(std::ostream& os, const MyString& obj);

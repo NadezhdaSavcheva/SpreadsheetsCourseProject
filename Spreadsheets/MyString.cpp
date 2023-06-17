@@ -138,6 +138,20 @@ bool MyString::empty() const
 	return length() == 0;
 }
 
+void MyString::clear() {
+	if (isSso()) {
+		ssoData[0] = '\0';
+		ssoData[MyString::SSO_MAX_SIZE] = MyString::SSO_MAX_SIZE;
+	}
+	else {
+		delete[] _data;
+		_data = new char[1];
+		_data[0] = '\0';
+		_size = 0;
+		notUsingSso();
+	}
+}
+
 char MyString::front() const
 {
 	return c_str()[0];
@@ -294,6 +308,17 @@ MyString& MyString::operator+=(const MyString& other)
 	return *this;
 }
 
+MyString& MyString::operator+=(char ch) {
+	// Convert the character to a string
+	MyString str(1);
+	str[0] = ch;
+	str[1] = '\0';
+
+	// Concatenate the character string to the current string
+	*this += str;
+
+	return *this;
+}
 
 char& MyString::operator[](size_t index)
 {
@@ -328,6 +353,21 @@ MyString operator+(const MyString& lhs, const MyString& rhs)
 		return res;
 	}
 }
+
+std::istream& getline(std::istream& is, MyString& str, char delimiter = '\n')
+{
+	// Clear the existing string
+	str.clear();
+
+	// Read characters from the input stream until the delimiter is encountered or end-of-file is reached
+	char ch;
+	while (is.get(ch) && ch != delimiter) {
+		str += ch;
+	}
+
+	return is;
+}
+
 bool operator<(const MyString& lhs, const MyString& rhs)
 {
 	return strcmp(lhs.c_str(), rhs.c_str()) < 0;

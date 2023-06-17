@@ -9,3 +9,10 @@ bool isNotNumber(const MyString& value);
 bool isNaN(double number);
 template <typename T>
 MyString toString(const T& data);
+bool isInteger(const MyString& value);
+bool isFractional(const MyString& data);
+bool isFormula(const MyString& value);
+bool isString(const MyString& data);
+unsigned getCharCountFromFile(std::ifstream& ifs, char ch);
+unsigned getLinesCount(const char* fileName);
+MyString trimString(const MyString& str);

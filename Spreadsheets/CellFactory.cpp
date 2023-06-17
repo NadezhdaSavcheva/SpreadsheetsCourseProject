@@ -4,17 +4,17 @@
 #include "StringCell.h"
 #include "FormulaCell.h"
 
-Cell* cellFactory(CellType type) {
+Cell* cellFactory(const MyString& data, CellType type) {
 	switch (type)
 	{
 	case CellType::Integer:
-		return new IntegerCell();
+		return new IntegerCell(data);
 	case CellType::Fractional:
-		return new FractionalCell();
+		return new FractionalCell(data);
 	case CellType::String:
-		return new StringCell();
+		return new StringCell(data);
 	case CellType::Formula:
-		return new FormulaCell();
+		return new FormulaCell(data);
 	}
 
 	return nullptr;
