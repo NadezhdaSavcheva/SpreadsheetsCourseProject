@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <exception>
 
 const size_t DEFAULT_CAPACITY = 4;
 
@@ -69,7 +70,7 @@ void Vector<T>::moveFrom(Vector&& other) {
 }
 
 template <typename T>
-size_t Vector<T>::calculateCapacity(const size_t) const {
+size_t Vector<T>::calculateCapacity(const size_t number) const {
 	size_t result = DEFAULT_CAPACITY;
 	while (number > result)
 		result *= 2;
@@ -157,7 +158,7 @@ void Vector<T>::pushBack(T&& element) {
 	if (size + 1 > capacity)
 		resize(size + 1);
 
-	data[size++] = std::move(element);
+	data[size++] = element;
 }
 
 template <typename T>
@@ -180,14 +181,14 @@ void Vector<T>::pushAt(T&& element, const size_t index) {
 	for (size_t i = size; i > index; i--)
 		data[i] = data[i - 1];
 
-	data[index] = std::move(element);
+	data[index] = element;
 	size++;
 }
 
 template <typename T>
 T& Vector<T>::popBack() {
 	if (empty())
-		throw std::logic_error "Vector is empty!";
+		throw std::logic_error("Vector is empty!");
 
 	return data[--size];
 }
@@ -195,7 +196,7 @@ T& Vector<T>::popBack() {
 template <typename T>
 T& Vector<T>::popAt(const size_t index) {
 	if (index < 0 || index >= size)
-		throw  std::out_of_range "Invalid index!";
+		throw  std::out_of_range("Invalid index!");
 
 	T temp = data[index];
 	for (size_t i = index; i < size - 1; i++)
@@ -207,16 +208,16 @@ T& Vector<T>::popAt(const size_t index) {
 
 template <typename T>
 T& Vector<T>::operator[](const size_t index) {
-	if (index < 0 || index >= size)
-		throw  std::out_of_range "Invalid index!";
+	if (index >= size)
+		throw  std::out_of_range("Invalid index!");
 
 	return data[index];
 }
 
 template <typename T>
 const T& Vector<T>::operator[](const size_t index) const {
-	if (index < 0 || index >= size)
-		throw  std::out_of_range "Invalid index!";
+	if (index >= size)
+		throw  std::out_of_range("Invalid index!");
 
 	return data[index];
 }

@@ -5,8 +5,10 @@
 class Table {
 private:
     Vector<Vector<Cell*>> cells;
+    MyString fileName;
     size_t rowsCount = 0;
     size_t columnsCount = 0;
+    bool mutable hasChanges = false;
 
     CellType determineType(const MyString& cellValue);
     void readRowFromFile(std::ifstream& file);
@@ -16,6 +18,9 @@ public:
     void loadFromFile(const char* fileName);
     void saveToFile(const char* fileName) const;
     void printTable() const;
-    void editCell(int row, int column, const MyString& newValue);
-    Cell* getCell(int row, int column) const;
+    void editCell(size_t row, size_t column, const MyString& newValue);
+    Cell* getCell(size_t row, size_t column) const;
+    bool getChangesFlag() const;
+    void setFileName(const MyString& name);
+    MyString getFileName() const;
 };

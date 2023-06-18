@@ -1,5 +1,13 @@
 #include "FormulaCell.h"
 #include "Utils.h"
+#include <sstream>
+
+template <typename T>
+MyString toString(const T& data) {
+    std::ostringstream oss;
+    oss << data;
+    return oss.str().c_str();
+}
 
 FormulaCell::FormulaCell(const MyString& value) : Cell(value, CellType::Formula) {}
 
@@ -7,7 +15,10 @@ MyString FormulaCell::getValue() const {
     if (isNaN(formulaResult))
         return "Error";
 
-    return toString<double>(formulaResult);
+    MyString result;
+    result = toString<double>(formulaResult);
+
+    return result;
 }
 
 bool FormulaCell::isValidFormula(const MyString& value) const {
@@ -45,6 +56,7 @@ void FormulaCell::setValue(const MyString& value) {
 		throw;
 
 	data = value;
+    cellType = CellType::Formula;
 }
 
 CellType FormulaCell::getCellType() const {
@@ -56,5 +68,5 @@ bool FormulaCell::isNumeric() const {
 }
 
 double FormulaCell::calculateFormula(const MyString& expression) {
-
+    return 0.0;
 }

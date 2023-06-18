@@ -24,9 +24,11 @@ CellType Table::determineType(const MyString& cellValue) {
 }
 
 void Table::readRowFromFile(std::ifstream& file) {
-    MyString line;
-    getline(file, line, '\n');
-    std::stringstream ss(line.c_str());
+    char line[1024];
+    file.getline(line, 1024, '\n');
+    std::stringstream ss(line);
+
+    Vector<Cell*> row;
 
     char buff[1024];
     while (ss.getline(buff, 1024, ',')) {
@@ -35,35 +37,38 @@ void Table::readRowFromFile(std::ifstream& file) {
         if (buff[0] == '\n') {
             for (size_t i = 0; i < cells[rowsCount].getSize(); i++)
             {
-                cells[rowsCount][columnsSize++] = cellFactory(trimString(buff), CellType::String);
+                row.pushBack(cellFactory(trimString(buff), CellType::String));
+                columnsSize++;
             }
         }
         else {
             if (trimString(buff).empty()) {
-                cells[rowsCount][columnsSize++] = cellFactory(trimString(buff), CellType::String);
+                row.pushBack(cellFactory(trimString(buff), CellType::String));
+                columnsSize++;
             }
             else {
-                cells[rowsCount][columnsSize++] = cellFactory(trimString(buff), determineType(trimString(buff)));
+                row.pushBack(cellFactory(trimString(buff), determineType(trimString(buff))));
+                columnsSize++;
             }
         }
 
         if (columnsSize > columnsCount)
             columnsCount = columnsSize;
-
-        columnsSize = 0;
     }
+
+    cells.pushBack(row);
     rowsCount++;
 }
 
 void Table::loadFromFile(const char* fileName) {
-    std::ifstream file(fileName);
+    std::ifstream file(fileName, std::ios::_Nocreate);
 
     if (!file.is_open()) {
         std::cout << "Failed to open file: " << fileName << std::endl;
         return;
     }
 
-    cells.clear();
+    //cells.clear();
 
     while (!file.eof()) {
         readRowFromFile(file);
@@ -90,6 +95,8 @@ void Table::saveToFile(const char* fileName) const {
     for (size_t i = 0; i < cells.getSize(); i++)
         saveRow(cells[i], ofs);
     ofs.close();
+
+    hasChanges = false;
 }
 
 void Table::printRow(const Vector<Cell*>& row, const Vector<size_t>& columnWidths) const {
@@ -123,10 +130,26 @@ void Table::printTable() const {
     }
 }
 
-void Table::editCell(int row, int column, const MyString& newValue) {
-
+void Table::editCell(size_t row, size_t column, const MyString& newValue) {
+    getCell(row, column)->setValue(trimString(newValue));
+    hasChanges = true;
 }
 
-Cell* Table::getCell(int row, int column) const {
+Cell* Table::getCell(size_t row, size_t column) const {
+    if (row >= rowsCount || column >= columnsCount)
+        throw;
+
     return cells[row - 1][column - 1];
+}
+
+bool Table::getChangesFlag() const {
+    return hasChanges;
+}
+
+void Table::setFileName(const MyString& name) {
+    fileName = name;
+}
+
+MyString Table::getFileName() const {
+    return fileName;
 }

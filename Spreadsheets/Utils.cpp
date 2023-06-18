@@ -110,17 +110,6 @@ bool isNaN(double number) {
     return number != number;
 }
 
-template <typename T>
-MyString toString(const T& data) {
-    MyString result;
-
-    std::stringstream temp;
-    temp << data;
-    result = temp.str();
-
-    return result;
-}
-
 bool isInteger(const MyString& value) {
     if (value.empty()) {
         return false;

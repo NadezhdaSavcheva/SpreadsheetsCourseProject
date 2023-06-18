@@ -6,7 +6,7 @@ double FractionalCell::getNumericValue() const {
         return toDouble(data);
     }
     catch (const std::exception&) {
-        // Invalid conversion
+        std::cout << "Invalid conversion" << std::endl;
     }
 }
 
@@ -50,6 +50,7 @@ void FractionalCell::setValue(const MyString& data) {
 		throw;
 
 	value = toDouble(data);
+    cellType = CellType::Fractional;
 }
 
 CellType FractionalCell::getCellType() const {

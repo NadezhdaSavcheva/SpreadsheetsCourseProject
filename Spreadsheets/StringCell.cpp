@@ -28,6 +28,7 @@ void StringCell::setValue(const MyString& value) {
 		throw;
 
 	data = data.substr(1, value.length() - 2);
+	cellType = CellType::String;
 }
 
 CellType StringCell::getCellType() const {

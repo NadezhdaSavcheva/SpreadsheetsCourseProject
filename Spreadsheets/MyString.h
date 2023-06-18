@@ -1,5 +1,5 @@
-#include <iostream>
 #pragma once
+#include <iostream>
 
 class MyString
 {
@@ -62,6 +62,7 @@ public:
 	~MyString();
 
 	friend MyString operator+(const MyString& lhs, const MyString& rhs);
+	friend std::istream& operator>>(std::istream& is, MyString& obj);
 	friend std::istream& getline(std::istream& is, MyString& str, char delimiter);
 };
 

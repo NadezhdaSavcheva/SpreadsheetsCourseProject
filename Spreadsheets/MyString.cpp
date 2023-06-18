@@ -162,7 +162,7 @@ char MyString::back() const
 	return c_str()[length() - 1];
 }
 
-size_t MyString::find(char c, size_t pos = 0) const {
+size_t MyString::find(char c, size_t pos) const {
 	size_t length = size();
 	if (pos >= length) {
 		return MyString::npos;
@@ -177,7 +177,7 @@ size_t MyString::find(char c, size_t pos = 0) const {
 	return MyString::npos;
 }
 
-size_t MyString::find_first_of(const MyString& str, size_t pos = 0) const
+size_t MyString::find_first_of(const MyString& str, size_t pos) const
 {
 	size_t length = str.length();
 	if (pos >= length) {
@@ -193,9 +193,9 @@ size_t MyString::find_first_of(const MyString& str, size_t pos = 0) const
 	return npos;
 }
 
-size_t MyString::find_last_of(const MyString& str, size_t pos = npos) const
+size_t MyString::find_last_of(const MyString& str, size_t pos) const
 {
-	if (length == 0 || str.length() == 0) {
+	if (length() == 0 || str.length() == 0) {
 		return npos;
 	}
 
@@ -212,7 +212,7 @@ size_t MyString::find_last_of(const MyString& str, size_t pos = npos) const
 	return npos;
 }
 
-size_t MyString::find_first_not_of(const MyString& str, size_t pos = 0) const
+size_t MyString::find_first_not_of(const MyString& str, size_t pos) const
 {
 	size_t length = str.length();
 	if (pos >= length) {
@@ -228,9 +228,9 @@ size_t MyString::find_first_not_of(const MyString& str, size_t pos = 0) const
 	return std::string::npos;
 }
 
-size_t MyString::find_last_not_of(const MyString& str, size_t pos = npos) const
+size_t MyString::find_last_not_of(const MyString& str, size_t pos) const
 {
-	if (length == 0) {
+	if (length() == 0) {
 		return npos;
 	}
 
@@ -247,7 +247,7 @@ size_t MyString::find_last_not_of(const MyString& str, size_t pos = npos) const
 	return npos;
 }
 
-MyString MyString::substr(size_t pos = 0, size_t len = npos) const
+MyString MyString::substr(size_t pos, size_t len) const
 {
 	if (pos >= length()) {
 		return MyString();
@@ -352,6 +352,17 @@ MyString operator+(const MyString& lhs, const MyString& rhs)
 		res.notUsingSso();
 		return res;
 	}
+}
+
+std::istream& operator>>(std::istream& is, MyString& obj) {
+	char buff[1024];
+	is >> buff; // is.getLine(buff, 1024);
+
+	delete[] obj._data;
+	obj._size = strlen(buff);
+	obj._data = new char[obj._size + 1];
+	strcpy(obj._data, buff);
+	return is;
 }
 
 std::istream& getline(std::istream& is, MyString& str, char delimiter = '\n')

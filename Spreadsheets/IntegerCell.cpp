@@ -5,8 +5,8 @@ int IntegerCell::getNumericValue() const {
     try {
         return toInteger(data);
     }
-    catch (const std::exception&) {
-        // Invalid conversion
+    catch (const std::exception& exc) {
+        std::cout << "Invalid conversion" << std::endl;
     }
 }
 
@@ -43,6 +43,7 @@ void IntegerCell::setValue(const MyString& data) {
         throw;
 
     value = toInteger(data);
+    cellType = CellType::Integer;
 }
 
 CellType IntegerCell::getCellType() const {

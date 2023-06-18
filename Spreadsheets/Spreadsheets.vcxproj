@@ -129,10 +129,19 @@
   <ItemGroup>
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="CellFactory.cpp" />
+    <ClCompile Include="CloseCommand.cpp" />
+    <ClCompile Include="Command.cpp" />
+    <ClCompile Include="CommandExecutor.cpp" />
+    <ClCompile Include="CommandFactory.cpp" />
+    <ClCompile Include="EditCommand.cpp" />
+    <ClCompile Include="ExitCommand.cpp" />
     <ClCompile Include="FormulaCell.cpp" />
     <ClCompile Include="FractionalCell.cpp" />
     <ClCompile Include="IntegerCell.cpp" />
     <ClCompile Include="MyString.cpp" />
+    <ClCompile Include="OpenCommand.cpp" />
+    <ClCompile Include="PrintCommand.cpp" />
+    <ClCompile Include="SaveCommand.cpp" />
     <ClCompile Include="Spreadsheets.cpp" />
     <ClCompile Include="StringCell.cpp" />
     <ClCompile Include="Table.cpp" />
@@ -141,15 +150,22 @@
   <ItemGroup>
     <ClInclude Include="Cell.h" />
     <ClInclude Include="CellFactory.h" />
+    <ClInclude Include="CloseCommand.h" />
+    <ClInclude Include="Command.h" />
+    <ClInclude Include="CommandExecutor.h" />
+    <ClInclude Include="CommandFactory.h" />
     <ClInclude Include="ConfigEnums.h" />
-    <ClInclude Include="CsvParser.hpp" />
+    <ClInclude Include="EditCommand.h" />
+    <ClInclude Include="ExitCommand.h" />
     <ClInclude Include="FormulaCell.h" />
     <ClInclude Include="FractionalCell.h" />
     <ClInclude Include="IntegerCell.h" />
     <ClInclude Include="MyString.h" />
+    <ClInclude Include="OpenCommand.h" />
+    <ClInclude Include="PrintCommand.h" />
+    <ClInclude Include="SaveCommand.h" />
     <ClInclude Include="StringCell.h" />
     <ClInclude Include="Table.h" />
-    <ClInclude Include="UniquePointer.hpp" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Vector.hpp" />
   </ItemGroup>

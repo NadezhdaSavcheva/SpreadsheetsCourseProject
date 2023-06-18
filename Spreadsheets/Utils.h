@@ -7,8 +7,6 @@ int toInteger(const MyString& value);
 double toDouble(const MyString& value);
 bool isNotNumber(const MyString& value);
 bool isNaN(double number);
-template <typename T>
-MyString toString(const T& data);
 bool isInteger(const MyString& value);
 bool isFractional(const MyString& data);
 bool isFormula(const MyString& value);
