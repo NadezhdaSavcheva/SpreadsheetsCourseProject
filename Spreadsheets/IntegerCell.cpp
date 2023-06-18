@@ -43,7 +43,6 @@ void IntegerCell::setValue(const MyString& data) {
         throw;
 
     value = toInteger(data);
-    cellType = CellType::Integer;
 }
 
 CellType IntegerCell::getCellType() const {

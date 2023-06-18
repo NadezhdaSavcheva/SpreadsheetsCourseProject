@@ -46,7 +46,8 @@ void Table::readRowFromFile(std::ifstream& file) {
                 columnsSize++;
             }
             else {
-                row.pushBack(cellFactory(trimString(buff), determineType(trimString(buff))));
+                Cell* cell = cellFactory(trimString(buff), determineType(trimString(buff)));
+                row.pushBack(cell);
                 columnsSize++;
             }
         }
