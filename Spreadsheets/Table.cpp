@@ -35,8 +35,7 @@ void Table::readRowFromFile(std::ifstream& file) {
         size_t columnsSize = 0;
 
         if (buff[0] == '\n') {
-            for (size_t i = 0; i < cells[rowsCount].getSize(); i++)
-            {
+            for (size_t i = 0; i < row.getCapacity(); i++) {
                 row.pushBack(cellFactory(trimString(buff), CellType::String));
                 columnsSize++;
             }
@@ -68,7 +67,7 @@ void Table::loadFromFile(const char* fileName) {
         return;
     }
 
-    //cells.clear();
+    cells.clear();
 
     while (!file.eof()) {
         readRowFromFile(file);
@@ -78,53 +77,56 @@ void Table::loadFromFile(const char* fileName) {
 }
 
 void Table::saveRow(const Vector<Cell*>& row, std::ofstream& ofs) const {
-    for (size_t i = 0; i < row.getSize(); i++)
-    {
+    for (size_t i = 0; i < row.getSize(); i++) {
         ofs << row[i]->getValue().c_str();
+
         if (i != row.getSize() - 1)
             ofs << ",";
     }
+
     ofs << std::endl;
 }
 
 void Table::saveToFile(const char* fileName) const {
     std::ofstream ofs(fileName);
+
     if (!ofs.is_open())
         return;
 
     for (size_t i = 0; i < cells.getSize(); i++)
         saveRow(cells[i], ofs);
+
     ofs.close();
 
     hasChanges = false;
 }
 
 void Table::printRow(const Vector<Cell*>& row, const Vector<size_t>& columnWidths) const {
-    for (size_t i = 0; i < row.getSize(); i++)
-    {
+    for (size_t i = 0; i < row.getSize(); i++) {
         std::cout << std::left << std::setw(columnWidths[i]) << row[i]->getValue().c_str();
+
         if (i != row.getSize() - 1)
             std::cout << " | ";
     }
+
     std::cout << std::endl;
 }
 
 void Table::printTable() const {
     Vector<size_t> columnWidths(columnsCount);
 
-    for (size_t i = 0; i < cells.getSize(); i++)
-    {
+    for (size_t i = 0; i < cells.getSize(); i++) {
         const Vector<Cell*>& currentRow = cells[i];
-        for (size_t j = 0; j < currentRow.getSize(); j++)
-        {
+
+        for (size_t j = 0; j < currentRow.getSize(); j++) {
             size_t valueLength = currentRow[j]->getValue().length();
+
             if (valueLength > columnWidths[j])
                 columnWidths[j] = valueLength;
         }
     }
 
-    for (size_t i = 0; i < cells.getSize(); i++)
-    {
+    for (size_t i = 0; i < cells.getSize(); i++) {
         const Vector <Cell*>& currentRow = cells[i];
         printRow(currentRow, columnWidths);
     }

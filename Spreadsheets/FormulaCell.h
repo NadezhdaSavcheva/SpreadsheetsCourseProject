@@ -11,5 +11,5 @@ public:
     void setValue(const MyString& value) override;
     CellType getCellType() const override;
     bool isNumeric() const override;
-    double calculateFormula(const MyString& expression);
+    double calculateFormula(const MyString& formula);
 };

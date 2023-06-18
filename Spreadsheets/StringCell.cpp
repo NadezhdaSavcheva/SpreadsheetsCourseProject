@@ -1,8 +1,6 @@
 #include "StringCell.h"
 #include "MyString.h"
 
-//static const char specialSymbols[] = { '\'', '\"', '\\' };
-
 bool StringCell::isValidString(const MyString& data) const {
 	size_t stringSize = data.length();
 

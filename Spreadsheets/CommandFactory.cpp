@@ -7,8 +7,7 @@
 #include "EditCommand.h"
 
 Command* CommandFactory::getCommand(unsigned short commandNumber) const {
-	switch (commandNumber)
-	{
+	switch (commandNumber) {
 	case 1:
 		return new OpenCommand();
 	case 2:
@@ -24,8 +23,7 @@ Command* CommandFactory::getCommand(unsigned short commandNumber) const {
 	}
 }
 
-CommandFactory& CommandFactory::getInstance()
-{
+CommandFactory& CommandFactory::getInstance() {
 	static CommandFactory factory;
 	return factory;
 }

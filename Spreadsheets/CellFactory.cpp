@@ -5,8 +5,7 @@
 #include "FormulaCell.h"
 
 Cell* cellFactory(const MyString& data, CellType type) {
-	switch (type)
-	{
+	switch (type) {
 	case CellType::Integer:
 		return new IntegerCell(data);
 	case CellType::Fractional:

@@ -2,6 +2,8 @@
 #include <cstring>
 #pragma warning (disable : 4996)
 
+//Base code: Angeld55/Object-oriented_programming_FMI/Week 09/SSO
+
 MyString::MyString() : MyString("") { }
 
 MyString::MyString(size_t size)

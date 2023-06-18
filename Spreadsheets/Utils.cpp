@@ -2,13 +2,11 @@
 #include <fstream>
 #include <sstream>
 
-bool isDigit(char character)
-{
+bool isDigit(char character) {
     return (character >= '0' && character <= '9');
 }
 
-bool isArithmeticOperator(char character)
-{
+bool isArithmeticOperator(char character) {
     return (character == '+' || character == '-' || character == '*' || character == '/' || character == '^') ? true : false;
 }
 
@@ -213,8 +211,7 @@ unsigned getCharCountFromFile(std::ifstream& ifs, char ch)
 
     unsigned int count = 0;
 
-    while (true)
-    {
+    while (true) {
         char current = ifs.get();
         if (ifs.eof())
             break;

@@ -1,6 +1,7 @@
 #include "FormulaCell.h"
 #include "Utils.h"
 #include <sstream>
+#include "Vector.hpp"
 
 template <typename T>
 MyString toString(const T& data) {
@@ -67,6 +68,6 @@ bool FormulaCell::isNumeric() const {
 	return false;
 }
 
-double FormulaCell::calculateFormula(const MyString& expression) {
+double FormulaCell::calculateFormula(const MyString& formula) {
     return 0.0;
 }

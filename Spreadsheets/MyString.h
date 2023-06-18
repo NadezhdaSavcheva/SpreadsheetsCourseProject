@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 
+//Base code: Angeld55/Object-oriented_programming_FMI/Week 09/SSO
+
 class MyString
 {
 	static const short SSO_MAX_SIZE = sizeof(char*) + sizeof(size_t) - 1;
